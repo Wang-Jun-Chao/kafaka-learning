@@ -1,0 +1,9 @@
+{
+    "namespace": "wjc.kafka",
+    "type": "record",
+    "name": "Customer",
+    "fields": [
+        {"name": "id", "type": "long"},
+        {"name": "name",  "type": "string"}
+    ]
+}

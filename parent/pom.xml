@@ -18,6 +18,9 @@
         <kafka.version>2.0.0</kafka.version>
         <jackson.version>2.9.7</jackson.version>
         <slf4j.version>1.7.25</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+        <kafka-avro.version>5.0.0</kafka-avro.version>
+        <avro.version>1.8.2</avro.version>
     </properties>
 
     <dependencyManagement>
@@ -44,22 +47,23 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-            <!--<dependency>-->
-                <!--<groupId>org.slf4j</groupId>-->
-                <!--<artifactId>slf4j-jdk14</artifactId>-->
-                <!--<version>${slf4j.version}</version>-->
-                <!--<scope>test</scope>-->
-            <!--</dependency>-->
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>org.slf4j</groupId>-->
-                <!--<artifactId>slf4j-simple</artifactId>-->
-                <!--<version>${slf4j.version}</version>-->
-            <!--</dependency>-->
+
+            <dependency>
+                <groupId>io.confluent</groupId>
+                <artifactId>kafka-avro-serializer</artifactId>
+                <version>${kafka-avro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro</artifactId>
+                <version>${avro.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
