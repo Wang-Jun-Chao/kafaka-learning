@@ -10,15 +10,16 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: wangjunchao(王俊超)
  * @time: 2018-10-11 14:37
  **/
 public class SendMessage {
-    private final static Logger     logger     = LoggerFactory.getLogger(SendMessage.class);
-    private final static ObjectMapper MAPPER = new ObjectMapper();
-    private static       Properties kafkaProps = new Properties();
+    private final static Logger       logger     = LoggerFactory.getLogger(SendMessage.class);
+    private final static ObjectMapper MAPPER     = new ObjectMapper();
+    private static       Properties   kafkaProps = new Properties();
 
 
     public static void main(String[] args) {
@@ -29,12 +30,12 @@ public class SendMessage {
         KafkaProducer<String, String> producer = new KafkaProducer<>(kafkaProps);
 
         ProducerRecord<String, String> record = new ProducerRecord<>(
-                "CustomerCountry", "Precision Products");
+                "CustomerCountry", "Biomedical Materials", "USA");
 
         try {
-            Future<RecordMetadata> future = producer.send(record);
-
-            logger.info(future.toString());
+            producer.send(record, new DemoProducerCallback());
+            // 等待回调函数完成
+            TimeUnit.SECONDS.sleep(3);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

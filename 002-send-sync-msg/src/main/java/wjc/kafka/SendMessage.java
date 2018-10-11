@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
-import java.util.concurrent.Future;
 
 /**
  * @author: wangjunchao(王俊超)
@@ -32,9 +31,9 @@ public class SendMessage {
                 "CustomerCountry", "Precision Products");
 
         try {
-            Future<RecordMetadata> future = producer.send(record);
+            RecordMetadata metadata = producer.send(record).get();
 
-            logger.info(future.toString());
+            logger.info(metadata.toString());
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
