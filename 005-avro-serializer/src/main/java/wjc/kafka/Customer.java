@@ -5,7 +5,7 @@ package wjc.kafka;
  * @time: 2018-10-11 16:58
  **/
 public class Customer {
-    private long   id;
+    private long    id;
     private String name;
 
     public Customer(long id, String name) {
